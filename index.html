@@ -19,46 +19,33 @@
     let isTipsBattle            = window.location.href.toLowerCase().indexOf('tipsbattle'); 
     let use                     = {}; 
     */
-    let timeStampNow            = new Date();
-    /*
-    let gameDateFirstGroupGame  = new Date(); 
-    let gameDateLastGroupGame   = new Date();
-    let firstKnockoutsGameDate  = new Date();
-    let lastKnockoutsGameDate   = new Date();
-    let semifinalGameDateMinusOneDay = new Date();
-    */
-    let year			     = timeStampNow.getFullYear();
+    let upcomingFeastDinner = {name, feastDate};
+    let timeStampNow        = new Date();
+    let today               = new Date(); 
+    
+    let year			    = timeStampNow.getFullYear();
+    let month               = timeStampNow.getMonth();
+    let day                 = timeStampNow.getDay();
+
     let jan = 0, feb=1, mar=2, apr=3, maj=4, jun=5, jul=6, aug=7, sep=8, okt=9, nov=10, dec=11; 
   	
-    gameDateFirstGroupGame.setFullYear(year, jun, 14); // månad: 0=jan, 1=feb, ...
-    gameDateFirstGroupGame.setHours(21);
-    gameDateFirstGroupGame.setMinutes(3);
+    today.setFullYear(year, month, day); // månad: 0=jan, 1=feb, ...
     
-    gameDateLastGroupGame.setFullYear(year, jun, 26);
+    upcomingFeastDinner = getUpcomingfeastdinner(today);
+    
     firstKnockoutsGameDate.setFullYear(year, jun, 29); // månad: 0=jan, 1=feb, ...
                                                        // dag: får inte inledas med en '0', t ex 03 --> 3
     lastKnockoutsGameDate.setFullYear(year, jul, 14);
     semifinalGameDateMinusOneDay.setFullYear(year, jul, 8); //skall vara semifinaldatumet - 1 dag 
                                                     
 
-    if (isTipsBattle > 0) {
-        tipsBattle = getTipsBattle(window.location.href);
-        byggStatsistikTipsBattleSite (tipsBattle);
-        siteTitle		= 'Tips-Battle';
-    } else {
-        byggStatsistikSite(sheetIDStatisticSite);
-        siteTitle		= 'Statistik';
-    }
-
-		document.getElementsByTagName('title')[0].text = siteTitle;
-
-    function createElement(element, attribut, attributvarde, text) {
+    
+    function getUpcomingfeastdinner(today) {
             
-      var elementObjekt         = document.createElement(element);
-      elementObjekt.setAttribute(attribut,attributvarde);
-      elementObjekt.textContent = text;
+      let feastHolidayList = [];
+      feastHolidayList.push('Trettondagshelg', new Date().setFullYear(2025,0,6))
 
-      return elementObjekt;
+      return {name: 'Trettondagshelg', feastDate: today};
     }
         
     function byggStatsistikTipsBattleSite (urlParam) {
