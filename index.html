@@ -19,7 +19,7 @@
     let isTipsBattle            = window.location.href.toLowerCase().indexOf('tipsbattle'); 
     let use                     = {}; 
     */
-    let upcomingFeastDinner = {name, feastDate};
+    let upcomingFeastDinner = {name: 'none', feastDate: new Date()};
     let timeStampNow        = new Date();
     let today               = new Date(); 
     
@@ -45,7 +45,7 @@
       let feastHolidayList = [];
       feastHolidayList.push('Trettondagshelg', new Date().setFullYear(2025,0,6))
 
-      return {name: 'Trettondagshelg', feastDate: today};
+      return {name: feastHolidayList[0], feastDate: feastHolidayList[1]};
     }
         
     function byggStatsistikTipsBattleSite (urlParam) {
