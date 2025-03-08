@@ -13,7 +13,9 @@
         'use strict'
     const sheetIDStatisticSite  = '1dBkX8-IfRuQoSTE9x7AeCGMT6GBJwAPUcnwqwJ_yUyk' // New Gen-versionen
     /* let siteTitle;
-    let championship            = decodeURIComponent(getChampionship (window.location.href));
+    
+    https://jorgu/feastdinners.github.io;
+
     let adminUser               = isAdminUser(window.location.href);
     let tipsBattle              = {}
     let isTipsBattle            = window.location.href.toLowerCase().indexOf('tipsbattle'); 
@@ -43,7 +45,17 @@
     function getUpcomingfeastdinner(today) {
             
       let feastHolidayList = [];
-      feastHolidayList.push('Trettondagshelg', new Date().setFullYear(2025,0,6))
+      feastHolidayList.push('Julbord', new Date().setFullYear(today.getFullYear(),0,6))
+      feastHolidayList.push('Julafton', new Date().setFullYear(today.getFullYear(),11,24))
+      feastHolidayList.push('Nyårsmiddag', new Date().setFullYear(today.getFullYear(),11,31))
+      feastHolidayList.push('Trettondag', new Date().setFullYear(today.getFullYear(),0,10))
+
+      // Som tidigast infaller Påskafton den 21 mars och som senast den 24 april
+      let defaultDay = 24;
+      feastHolidayList.push('Påskafton', new Date().setFullYear(today.getFullYear(),3,defaultDay));
+      feastHolidayList.push('Midsommarafton', new Date().setFullYear(today.getFullYear(),5,30));
+
+      feastHolidayList.push('Kräftskiva', new Date().setFullYear(today.getFullYear(),9,18));
 
       return {name: feastHolidayList[0], feastDate: feastHolidayList[1]};
     }
