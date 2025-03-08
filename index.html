@@ -1,1 +1,288 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" type="image/x-icon" href="https://hedgehog.games/images/fotboll.ico">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <base target="_top">    
+    <link rel="stylesheet" type="text/css" href="feast.css">
+  </head>
+  <body id='feastDinnerSite'>    
+  </body>
+  <script>
+        'use strict'
+    const sheetIDStatisticSite  = '1dBkX8-IfRuQoSTE9x7AeCGMT6GBJwAPUcnwqwJ_yUyk' // New Gen-versionen
+    /* let siteTitle;
+    let championship            = decodeURIComponent(getChampionship (window.location.href));
+    let adminUser               = isAdminUser(window.location.href);
+    let tipsBattle              = {}
+    let isTipsBattle            = window.location.href.toLowerCase().indexOf('tipsbattle'); 
+    let use                     = {}; 
+    */
+    let timeStampNow            = new Date();
+    /*
+    let gameDateFirstGroupGame  = new Date(); 
+    let gameDateLastGroupGame   = new Date();
+    let firstKnockoutsGameDate  = new Date();
+    let lastKnockoutsGameDate   = new Date();
+    let semifinalGameDateMinusOneDay = new Date();
+    */
+    let year			     = timeStampNow.year();
+    let jan = 0, feb=1, mar=2, apr=3, maj=4, jun=5, jul=6, aug=7, sep=8, okt=9, nov=10, dec=11; 
+  	
+    gameDateFirstGroupGame.setFullYear(year, jun, 14); // månad: 0=jan, 1=feb, ...
+    gameDateFirstGroupGame.setHours(21);
+    gameDateFirstGroupGame.setMinutes(3);
+    
+    gameDateLastGroupGame.setFullYear(year, jun, 26);
+    firstKnockoutsGameDate.setFullYear(year, jun, 29); // månad: 0=jan, 1=feb, ...
+                                                       // dag: får inte inledas med en '0', t ex 03 --> 3
+    lastKnockoutsGameDate.setFullYear(year, jul, 14);
+    semifinalGameDateMinusOneDay.setFullYear(year, jul, 8); //skall vara semifinaldatumet - 1 dag 
+                                                    
+
+    if (isTipsBattle > 0) {
+        tipsBattle = getTipsBattle(window.location.href);
+        byggStatsistikTipsBattleSite (tipsBattle);
+        siteTitle		= 'Tips-Battle';
+    } else {
+        byggStatsistikSite(sheetIDStatisticSite);
+        siteTitle		= 'Statistik';
+    }
+
+		document.getElementsByTagName('title')[0].text = siteTitle;
+
+    function createElement(element, attribut, attributvarde, text) {
+            
+      var elementObjekt         = document.createElement(element);
+      elementObjekt.setAttribute(attribut,attributvarde);
+      elementObjekt.textContent = text;
+
+      return elementObjekt;
+    }
+        
+    function byggStatsistikTipsBattleSite (urlParam) {
+        
+        let urlTipsBattle;
+
+        var statisticBody;
+        var statisticDivCenter;
+        var statisticHeader;
+        var statisticDivSub;
+        var defButtonClass       = 'tipsbattleButton tipsbattleButton2';
+          
+        statisticBody = document.getElementById('statisticSite');
+
+        statisticDivCenter = createElement('div', 'class', 'center', '');
+        
+        statisticHeader    = createElement('div', 'class', 'headTipsbattle', '');
+        statisticHeader.setAttribute('style', 'font-size: 24px; italic: true');
+        statisticHeader.textContent = championship; //CHAMPIONSHIP;
+
+        statisticDivSub = createElement('div', 'class', 'headTipsbattle', 'Tips-Battle');
+        statisticDivSub.setAttribute('style','font-size: 14px; margin: 14px 2px;');
+        statisticHeader.appendChild(statisticDivSub);
+        statisticDivCenter.appendChild(statisticHeader);
+        
+        var statisticBtn1;
+        urlParam.forEach( item => {
+            statisticBtn1 = createElement('button', 'class', defButtonClass, decodeURIComponent(item.btnText));
+            urlTipsBattle = 'window.location.href="https://docs.google.com/spreadsheets/d/' + item.ssID + '/htmlembed/sheet?gid=' + item.sheetID + '&range=' + item.rangeName + '"';
+
+            statisticBtn1.setAttribute('onClick', urlTipsBattle);
+            
+            statisticDivCenter.appendChild(statisticBtn1);
+        })
+        statisticBody.appendChild(statisticDivCenter);
+              
+    }
+
+
+
+    function byggStatsistikSite(sheetID) {
+      
+      let gidIdDagensmatcher          = '1372088022&range=range.Dagensmatcher"';
+      let gidIdYesterdayToDayToMorrow = '1381113676&range=range.Igår_Idag_Imorgon"';
+      let betalningsstatus            = '&range=betalningsstatus"';
+      let betalningsstatusPlus        = '&range=betalningsstatusPlus"';
+      let gidIdBetalningsstatus;
+      let showMyTipskupongDate        = new Date();
+      
+      // När min tipskupong.pdf skall visas på "Betalningsstatussidan" för nedladdning
+      showMyTipskupongDate.setFullYear(gameDateFirstGroupGame.getFullYear(), gameDateFirstGroupGame.getMonth(), gameDateFirstGroupGame.getDate() + 1);
+      showMyTipskupongDate.setHours(7);
+      showMyTipskupongDate.setMinutes(0);
+
+      timeStampNow <  showMyTipskupongDate ? gidIdBetalningsstatus = betalningsstatus : gidIdBetalningsstatus = betalningsstatusPlus;
+      
+      //gameDateFirstGroupGame timeStampNow
+
+          var urlPoangtabell                = 'window.location.href="https://docs.google.com/spreadsheets/d/' + sheetID + '/htmlembed/sheet?gid=0"';
+          var urlDagensmatcher              = 'window.location.href="https://docs.google.com/spreadsheets/d/' + sheetID + '/htmlembed/sheet?gid=' + gidIdDagensmatcher; 
+          var urlYesterday_Today_ToMorrow   = 'window.location.href="https://docs.google.com/spreadsheets/d/' + sheetID + '/htmlembed/sheet?gid=' + gidIdYesterdayToDayToMorrow; 
+          var urlSlutspelslagen             = 'window.location.href="https://docs.google.com/spreadsheets/d/' + sheetID + '/htmlembed/sheet?gid=1782034956"';
+          var urlSlutspelsträd              = 'window.location.href="https://docs.google.com/spreadsheets/d/' + sheetID + '/htmlembed/sheet?gid=762576753&range=tree"';
+          var urlWallOfFame                 = 'window.location.href="https://docs.google.com/spreadsheets/d/' + sheetID + '/htmlembed/sheet?gid=853518881"';
+          var urlHallOfFame                 = 'window.location.href="https://docs.google.com/spreadsheets/d/' + sheetID + '/htmlembed/sheet?gid=1781401850&range=hallOfFame"';
+          var urlGuldsko                    = 'window.location.href="https://docs.google.com/spreadsheets/d/' + sheetID + '/htmlembed/sheet?gid=564428082"';
+          var urlMatchresultat              = 'window.location.href="https://docs.google.com/spreadsheets/d/' + sheetID + '/htmlembed/sheet?gid=1436740221"';
+          var urlBetalningsstatus           = 'window.location.href="https://docs.google.com/spreadsheets/d/' + sheetID + '/htmlembed/sheet?gid=1058944913' + gidIdBetalningsstatus;
+          var urlTipsLicensstatus           = 'window.location.href="https://docs.google.com/spreadsheets/d/' + sheetID + '/htmlembed/sheet?gid=1742106398"';
+          var urlPoangtabellHistorik        = 'window.location.href="https://docs.google.com/spreadsheets/d/' + sheetID + '/htmlembed/sheet?gid=1553482192"';
+	      var urlTipsBattleTop5		        = 'window.location.href="https://docs.google.com/spreadsheets/d/' + sheetID + '/htmlembed/sheet?gid=562071929"';
+          var statisticBody;
+          var statisticDivCenter;
+          var statisticHeader;
+          var statisticDivSub;
+          var defButtonClass                = 'statistikButton statistikButton2';
+          let defButtonAdminClass           = 'adminButton adminButton2';
+
+        
+          statisticBody = document.getElementById('statisticSite');
+
+          statisticDivCenter = createElement('div', 'class', 'center', '');
+          
+          statisticHeader    = createElement('div', 'class', 'headStatistik', '');
+          statisticHeader.setAttribute('style', 'font-size: 24px; italic: true');
+          statisticHeader.textContent = championship;
+
+          statisticDivSub = createElement('div', 'class', 'headStatistik', 'Statistik');
+          statisticDivSub.setAttribute('style','font-size: 14px; margin: 14px 2px;');
+          
+          var statisticBtn1 = createElement('button', 'class', defButtonClass, 'Poängligan');
+              statisticBtn1.setAttribute('onClick', urlPoangtabell);
+
+          var statisticBtn2 = createElement('button', 'class', defButtonClass, 'Dagens matcher');
+              statisticBtn2.setAttribute('onClick', urlDagensmatcher);
+
+          var statisticBtn22 = createElement('button', 'class', defButtonClass, 'Igår-Idag-Imorgon');
+              statisticBtn22.setAttribute('onClick', urlYesterday_Today_ToMorrow);
+          
+          var statisticBtn3 = createElement('button', 'class', defButtonClass, 'Slutspelslagen');
+              statisticBtn3.setAttribute('onClick', urlSlutspelslagen);
+
+          var statisticBtn4 = createElement('button', 'class', defButtonClass, 'Slutspelsträd');
+              statisticBtn4.setAttribute('onClick', urlSlutspelsträd);
+
+          var statisticBtn5 = createElement('button', 'class', defButtonClass, 'Wall of fame');
+              statisticBtn5.setAttribute('onClick', urlWallOfFame);
+
+          var statisticBtn6 = createElement('button', 'class', defButtonClass, 'Guldskon');
+              statisticBtn6.setAttribute('onClick', urlGuldsko);
+
+          var statisticBtn7 = createElement('button', 'class', defButtonClass, 'Matchresultat');
+              statisticBtn7.setAttribute('onClick', urlMatchresultat);
+            
+          var statisticBtn77 = createElement('button', 'class', defButtonClass, 'Hall of fame');
+              statisticBtn77.setAttribute('onClick', urlHallOfFame);
+
+          var statisticBtn8 = createElement('button', 'class', defButtonClass, 'Betalningsstatus');
+              statisticBtn8.setAttribute('onClick', urlBetalningsstatus);
+
+          var statisticBtn9 = createElement('button', 'class', defButtonAdminClass, 'Tipslicensstatus');
+              statisticBtn9.setAttribute('onClick', urlTipsLicensstatus);
+          
+          var statisticBtn11 = createElement('button', 'class', defButtonClass, 'Poängligan - Historik');
+              statisticBtn11.setAttribute('onClick', urlPoangtabellHistorik);
+
+	  var statisticBtn12 = createElement('button', 'class', defButtonClass, 'Topp 5');
+		  statisticBtn12.setAttribute('onClick', urlTipsBattleTop5);
+
+                    
+          statisticHeader.appendChild(statisticDivSub);
+          statisticDivCenter.appendChild(statisticHeader);
+          statisticDivCenter.appendChild(statisticBtn1);
+          if (timeStampNow <= lastKnockoutsGameDate) { statisticDivCenter.appendChild(statisticBtn2)}; // visar ej "Dagensmatcher" efter mästerskapet är över
+          statisticDivCenter.appendChild(statisticBtn22);  //Igår-Idag-Imorgon
+          statisticDivCenter.appendChild(statisticBtn3);
+          statisticDivCenter.appendChild(statisticBtn4);
+          if (timeStampNow <  firstKnockoutsGameDate) { statisticDivCenter.appendChild(statisticBtn5);}  //Wall of fame
+          statisticDivCenter.appendChild(statisticBtn6);
+          statisticDivCenter.appendChild(statisticBtn7);
+          statisticDivCenter.appendChild(statisticBtn77); // Hall of fame
+          statisticDivCenter.appendChild(statisticBtn8);
+	  if (timeStampNow >= semifinalGameDateMinusOneDay) {statisticDivCenter.appendChild(statisticBtn12)}; // tipsbattle - Top 5 
+          if(adminUser) {
+            statisticDivCenter.appendChild(statisticBtn9);
+            statisticDivCenter.appendChild(statisticBtn11);
+            }
+          statisticBody.appendChild(statisticDivCenter);
+          
+        }
+
+    function getTipsBattle(url) {
+        
+        let refObjList   = [];
+        let stringIX = 0;
+
+        let text         = 'ssid_'
+        let startIX      = url.toLowerCase().indexOf(text) + text.length;
+        let length       = url.toLowerCase().indexOf('sheetid_', stringIX)
+        let ssid         = url.substring(startIX, length);
+
+        while (url.toLowerCase().indexOf('sheetid_', stringIX) > 0) {
+            let refObj       = {};
+            refObj.ssID      = ssid; 
+            
+            text             = 'sheetid_'
+            startIX          = url.toLowerCase().indexOf(text, stringIX) + text.length;
+            length           = url.toLowerCase().indexOf('area_', stringIX)
+            refObj.sheetID   = url.substring(startIX, length);
+
+            text             = 'area_'
+            startIX          = url.toLowerCase().indexOf(text, stringIX) + text.length;
+            length           = url.toLowerCase().indexOf('group_', stringIX)
+            refObj.rangeName = url.substring(startIX, length);  
+
+            text             = 'group_'
+            startIX          = url.toLowerCase().indexOf(text, stringIX) + text.length;
+            length           = refObj.rangeName.length;
+            refObj.btnText   = url.substring(startIX, startIX + length);
+            
+            stringIX = startIX + length;
+        
+            switch (refObj.btnText) {
+                case "Theos-gang":
+                    refObj.btnText = "Theo's gang";
+                    break;
+                case "Tibro-IBK":
+                    refObj.btnText = "Tibro IBK";
+                    break;
+                case "Topp-5":
+                    refObj.btnText = "Topp 5";
+                    break;
+                default:
+                    //
+            }
+            refObjList.push(refObj);
+        }
+
+        return refObjList;
+    }
+
+    function isAdminUser(url) {
+      
+        var pos = url.toLowerCase().indexOf('theking');
+      
+      return pos > 0 ? true : false;
+    };
+    
+    
+    function getChampionship (url) {
+    
+    	let championship = '';
+        
+        let text         = 'championship_'
+        let startIX  = url.toLowerCase().indexOf(text, 0) + text.length;
+        
+        if(startIX > 0) {
+            championship = url.substring(startIX).toUpperCase();
+            championship    = championship.substring(0,2) + ' ' + championship.substr(2);
+        }
+        
+        return championship;
+    };
+
+  </script>
+</html>
 
