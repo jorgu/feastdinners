@@ -35,29 +35,28 @@
     
     upcomingFeastDinner = getUpcomingfeastdinner(today);
     
-    firstKnockoutsGameDate.setFullYear(year, jun, 29); // månad: 0=jan, 1=feb, ...
-                                                       // dag: får inte inledas med en '0', t ex 03 --> 3
-    lastKnockoutsGameDate.setFullYear(year, jul, 14);
-    semifinalGameDateMinusOneDay.setFullYear(year, jul, 8); //skall vara semifinaldatumet - 1 dag 
-                                                    
-
     
-    function getUpcomingfeastdinner(today) {
+    
+    function getUpcomingfeastdinner() {
             
-      let feastHolidayList = [];
-      feastHolidayList.push('Julbord', new Date().setFullYear(today.getFullYear(),0,6))
-      feastHolidayList.push('Julafton', new Date().setFullYear(today.getFullYear(),11,24))
-      feastHolidayList.push('Nyårsmiddag', new Date().setFullYear(today.getFullYear(),11,31))
-      feastHolidayList.push('Trettondag', new Date().setFullYear(today.getFullYear(),0,10))
+        let today = new Date();
+        let feastHolidayList = [
+            { name: 'Trettondag',       date: new Date(today.getFullYear(), jan, 10) },
+            { name: 'Påskafton',        date: new Date(today.getFullYear(), apr, 24) },
+            { name: 'Midsommarafton',   date: new Date(today.getFullYear(), jun, 24) },
+            { name: 'Kräftskiva',       date: new Date(today.getFullYear(), aug, 18) },
+            { name: 'Julbord',          date: new Date(today.getFullYear(), dec, 6) },
+            { name: 'Julafton',         date: new Date(today.getFullYear(), dec, 24) },
+            { name: 'Nyårsmiddag',      date: new Date(today.getFullYear(), dec, 31) }
+        ];
+        
+        feastHolidayList.sort((a, b) => a.date - b.date);
+    
+        // Hitta det första datumet som är större än dagens datum
+        let nextHoliday = feastHolidayList.find(event => event.date > today);
 
-      // Som tidigast infaller Påskafton den 21 mars och som senast den 24 april
-      let defaultDay = 24;
-      feastHolidayList.push('Påskafton', new Date().setFullYear(today.getFullYear(),3,defaultDay));
-      feastHolidayList.push('Midsommarafton', new Date().setFullYear(today.getFullYear(),5,30));
-
-      feastHolidayList.push('Kräftskiva', new Date().setFullYear(today.getFullYear(),9,18));
-
-      return {name: feastHolidayList[0], feastDate: feastHolidayList[1]};
+        console.log(`Nästa högtid: ${nextHoliday.name} - ${nextHoliday.date.toDateString()}`);
+        return nextHoliday;
     }
         
     function byggStatsistikTipsBattleSite (urlParam) {
