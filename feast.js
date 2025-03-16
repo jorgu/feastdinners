@@ -32,14 +32,14 @@ function getUpcomingfeastdinner() {
         
     let today = new Date();
     let feastHolidayList = [
-        { id: EPIPHANY.id,            desc: EPIPHANY.desc,           date: new Date(today.getFullYear(), jan, 10) },
-        { id: EASTEREVENING.id,       desc: EASTEREVENING.desc,      date: new Date(today.getFullYear(), apr, 24) },
-        { id: MIDSUMMEREVENING.id,    desc: MIDSUMMEREVENING.desc,   date: new Date(today.getFullYear(), jun, 24) },
-        { id: CRAYFISHPARTY.id,       desc: CRAYFISHPARTY.desc,      date: new Date(today.getFullYear(), aug, 18) },
-        { id: CHRISTMASDINNER.id,     desc: CHRISTMASDINNER.desc,    date: new Date(today.getFullYear(), dec, 6) },
-        { id: CHRISTMASEVENING.id,    desc: CHRISTMASEVENING.desc,   date: new Date(today.getFullYear(), dec, 24) },
-        { id: NEWYEARDINNER.id,       desc: NEWYEARDINNER.desc,      date: new Date(today.getFullYear(), dec, 31) },
-        { id: EASTEREVENING.id,       desc: EASTEREVENING.desc,      date: new Date(today.getFullYear()+1, jan, 10) }
+        { id: EPIPHANY.id,            desc: EPIPHANY.desc,           date: new Date(today.getFullYear(), jan, 10),      sheetID:'' },
+        { id: EASTEREVENING.id,       desc: EASTEREVENING.desc,      date: new Date(today.getFullYear(), apr, 24),      sheetID:'' },
+        { id: MIDSUMMEREVENING.id,    desc: MIDSUMMEREVENING.desc,   date: new Date(today.getFullYear(), jun, 24),      sheetID:'' },
+        { id: CRAYFISHPARTY.id,       desc: CRAYFISHPARTY.desc,      date: new Date(today.getFullYear(), aug, 18),      sheetID:'' },
+        { id: CHRISTMASDINNER.id,     desc: CHRISTMASDINNER.desc,    date: new Date(today.getFullYear(), dec, 6),       sheetID:'401376878' },
+        { id: CHRISTMASEVENING.id,    desc: CHRISTMASEVENING.desc,   date: new Date(today.getFullYear(), dec, 24),      sheetID:'740624674' },
+        { id: NEWYEARDINNER.id,       desc: NEWYEARDINNER.desc,      date: new Date(today.getFullYear(), dec, 31),      sheetID:'' },
+        { id: EASTEREVENING.id,       desc: EASTEREVENING.desc,      date: new Date(today.getFullYear()+1, jan, 10),    sheetID:'' }
     ];
     
     feastHolidayList.sort((a, b) => a.date - b.date);
@@ -69,15 +69,15 @@ function byggStatsistikSite(sheetID) {
   //gameDateFirstGroupGame timeStampNow
 
       var urlTrettondag                = 'window.location.href="https://docs.google.com/spreadsheets/d/' + sheetID + '/htmlembed/sheet?gid=0"';
-      var urlEastern              = 'www.his.se'; 
+      var urlEastern              = 'window.location.href="https://his.se"'; 
       var urlMidsummer             = 'window.location.href="www.his.se"'; 
       
       var feastDinnerBody;
       var feastDinnerDivCenter;
       var feastDinnerHeader;
       var feastDinnerDivSub;
-      var defButtonClass        = 'feastDinnerButton feastDinnerButton2';
-      var defButtonDiabledClass = 'feastDinnerButtonDisabled'
+      var defButtonClass         = 'feastDinnerButton feastDinnerButton2';
+      var defButtonDisabledClass = 'feastDinnerButtonDisabled'
       
     
       feastDinnerBody = document.getElementById('feastDinnerSite');
@@ -93,7 +93,7 @@ function byggStatsistikSite(sheetID) {
       feastDinnerHeader.appendChild(feastDinnerDivSub);
       feastDinnerDivCenter.appendChild(feastDinnerHeader);
       
-      var feastDinnerBtn1 = createElement('button', 'class', defButtonClass, 'Trettondag');
+     /* var feastDinnerBtn1 = createElement('button', 'class', defButtonClass, 'Trettondag');
           feastDinnerBtn1.setAttribute('onClick', urlTrettondag);
 
       var feastDinnerBtn2 = createElement('button', 'class', defButtonClass, 'Påsk');
@@ -102,15 +102,32 @@ function byggStatsistikSite(sheetID) {
       var feastDinnerBtn3 = createElement('button', 'class', defButtonDiabledClass, 'Midsommar');
           feastDinnerBtn3.setAttribute('onClick', urlMidsummer);
           feastDinnerBtn3.setAttribute('disabled',true);
+      */
+      let feastDinnerBtn;
+      feastDinnerBtn = createTheButton(EPIPHANY.desc, urlTrettondag, false, defButtonClass);        
+      feastDinnerDivCenter.appendChild(feastDinnerBtn);
+      feastDinnerBtn = createTheButton(EASTEREVENING.desc, urlEastern, false, defButtonClass);
+      feastDinnerDivCenter.appendChild(feastDinnerBtn); 
+      feastDinnerBtn = createTheButton(MIDSUMMEREVENING.desc, urlMidsummer, true, defButtonDisabledClass);
+      feastDinnerDivCenter.appendChild(feastDinnerBtn); 
+      feastDinnerBtn = createTheButton(CHRISTMASDINNER.desc, CHRISTMASDINNER.sheetID, false, defButtonClass);
+      feastDinnerDivCenter.appendChild(feastDinnerBtn); 
       
-                
-      feastDinnerDivCenter.appendChild(feastDinnerBtn1);
-      feastDinnerDivCenter.appendChild(feastDinnerBtn2); 
-      feastDinnerDivCenter.appendChild(feastDinnerBtn3);
-
       feastDinnerBody.appendChild(feastDinnerDivCenter);
       
     }
+
+function createTheButton(description, sheetID, disabled, buttonclass) {
+
+    let url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSNEXmdDHBEig5YDcvjpi2qhsG583EaivG6s-rHYuOYrYAFYF6MuPTU5sOaMbKynzzTqTmFqnp3vyJd/pubhtml?gid=' + sheetID + '&single=true'
+    url     = 'window.location.href="' +url + '"' 
+    let feastDinnerBtn = createElement('button', 'class', buttonclass, description);
+    feastDinnerBtn.setAttribute('onClick', url);
+    feastDinnerBtn.disabled = disabled;
+
+    return feastDinnerBtn;
+
+}
 
 
 function isAdminUser(url) {
