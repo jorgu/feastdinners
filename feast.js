@@ -66,7 +66,7 @@ function createElement(element, attribut, attributvarde, text) {
 function byggStatsistikSite(sheetID) {
   
   
-  //gameDateFirstGroupGame timeStampNow
+  //Påskmat.gsheet https://docs.google.com/spreadsheets/d/1eZv-inNeGf_b0hfx1Gqkr2Vx6e8ERqUpj_4tnfhn2CY/edit?gid=401376878#gid=401376878
 
       var urlTrettondag                = 'window.location.href="https://docs.google.com/spreadsheets/d/' + sheetID + '/htmlembed/sheet?gid=0"';
       var urlEastern              = 'window.location.href="https://his.se"'; 
