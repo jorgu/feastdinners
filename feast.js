@@ -9,7 +9,7 @@ let upcomingFeastDinner = {name: 'none', feastDate: new Date()};
 let timeStampNow        = new Date();
 let jan = 0, feb=1, mar=2, apr=3, maj=4, jun=5, jul=6, aug=7, sep=8, okt=9, nov=10, dec=11; 
 
-let year			    = timeStampNow.getFullYear();
+let year			          = timeStampNow.getFullYear();
 let month               = timeStampNow.getMonth();
 let day                 = timeStampNow.getDay();
 
@@ -34,6 +34,8 @@ upcomingFeastDinner = getUpcomingfeastdinner(feastHolidayList);
 byggStatsistikSite(feastHolidayList, upcomingFeastDinner);
 //siteTitle		= 'Statistik';    
 
+
+
 function getUpcomingfeastdinner(lista) {
         
     let today = new Date(); 
@@ -43,7 +45,7 @@ function getUpcomingfeastdinner(lista) {
     // Hitta det första datumet som är större än dagens datum
     let nextHoliday = lista.find(event => event.date > today);
 
-    console.log(`Nästa högtid: ${nextHoliday.id} - ${nextHoliday.date.toDateString()}`);
+    //console.log(`Nästa högtid: ${nextHoliday.id} - ${nextHoliday.date.toDateString()}`);
     return nextHoliday.id;
 }
 
@@ -60,30 +62,21 @@ function createElement(element, attribut, attributvarde, text) {
       
 
 function byggStatsistikSite(lista, holidayDinner) {
-  
-  
-    //Påskmat.gsheet https://docs.google.com/spreadsheets/d/1eZv-inNeGf_b0hfx1Gqkr2Vx6e8ERqUpj_4tnfhn2CY/edit?gid=401376878#gid=401376878
-  
-        let urlPrefix = 'window.location.href="https://docs.google.com/spreadsheets/d/';
-        let urlSuffix = '/htmlembed/sheet?gid=';
         
       var feastDinnerBody;
       var feastDinnerDivCenter;
       var feastDinnerHeader;
-      var feastDinnerDivSub;
-      var defButtonClass         = 'feastDinnerButton feastDinnerButton2';
-      var defButtonDisabledClass = 'feastDinnerButtonDisabled'
-      
+      var feastDinnerDivSub;     
     
       feastDinnerBody = document.getElementById('feastDinnerSite');
 
       feastDinnerDivCenter = createElement('div', 'class', 'center', '');
       
-      feastDinnerHeader    = createElement('div', 'class', 'headFeastDinner', '');
-      feastDinnerHeader.setAttribute('style', 'font-size: 24px; italic: true');
-      feastDinnerHeader.textContent = 'championship';
+      feastDinnerHeader    = createElement('div', 'class', 'headFeast', '');
+      feastDinnerHeader.setAttribute('style', 'font-size: 18px; italic: true');
+      feastDinnerHeader.textContent = 'Samkväm';
 
-      feastDinnerDivSub = createElement('div', 'class', 'headFeastDinner', 'Statistik');
+      feastDinnerDivSub = createElement('div', 'class', 'headFeast', 'med god mat & dryck');
       feastDinnerDivSub.setAttribute('style','font-size: 14px; margin: 14px 2px;');
       feastDinnerHeader.appendChild(feastDinnerDivSub);
       feastDinnerDivCenter.appendChild(feastDinnerHeader);
@@ -92,27 +85,24 @@ function byggStatsistikSite(lista, holidayDinner) {
 
         lista.forEach(holidy => {
             let feastDinnerBtn;
-            feastDinnerBtn = createTheButton(holidy.desc, holidy.urlID, holidy.sheetID, holidy.id==holidayDinner, defButtonClass);
+            feastDinnerBtn = createTheButton(holidy.desc, holidy.urlID, holidy.sheetID, holidy.id!=holidayDinner);
             feastDinnerDivCenter.appendChild(feastDinnerBtn);      
         })
     
-    /*  feastDinnerBtn = createTheButton(EPIPHANY.desc, urlTrettondag, false, defButtonClass);        
-      feastDinnerDivCenter.appendChild(feastDinnerBtn);
-      feastDinnerBtn = createTheButton(EASTEREVENING.desc, urlEastern, false, defButtonClass);
-      feastDinnerDivCenter.appendChild(feastDinnerBtn); 
-      feastDinnerBtn = createTheButton(MIDSUMMEREVENING.desc, urlMidsummer, true, defButtonDisabledClass);
-      feastDinnerDivCenter.appendChild(feastDinnerBtn); 
-      feastDinnerBtn = createTheButton(CHRISTMASDINNER.desc, CHRISTMASDINNER.sheetID, false, defButtonClass);
-      feastDinnerDivCenter.appendChild(feastDinnerBtn); 
-      */
+  
       feastDinnerBody.appendChild(feastDinnerDivCenter);
       
     }
 
-function createTheButton(description, prefixUrl, sheetID, disabled, buttonclass) {
-
-    let url = 'window.location.href="https://docs.google.com/spreadsheets/d/' + prefixUrl + '/pubhtml?gid=' + sheetID + '&single=true'
+function createTheButton(description, urlID, sheetID, disabled) {
     
+    let defButtonClass         = 'feastDinnerButton feastDinnerButton2';
+    let defButtonDisabledClass = 'feastDinnerButtonDisabled';
+    let buttonclass;
+    let url = 'window.location.href="https://docs.google.com/spreadsheets/d/' + urlID + '/htmlembed/sheet?gid=' + sheetID + '"';
+    
+    disabled ? buttonclass = defButtonDisabledClass : buttonclass = defButtonClass;
+
     let feastDinnerBtn = createElement('button', 'class', buttonclass, description);
     feastDinnerBtn.setAttribute('onClick', url);
     feastDinnerBtn.disabled = disabled;
