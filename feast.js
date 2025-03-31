@@ -1,7 +1,7 @@
 'use strict'
-/* let siteTitle;
+/* 
 
-https://jorgu/feastdinners.github.io;
+https://jorgu.github.io/feastdinners/;
 
 */
 let feastHolidayList    = [];
