@@ -6,6 +6,7 @@ https://jorgu.github.io/feastdinners/;
 */
 let feastHolidayList    = [];
 let upcomingFeastDinner = {name: 'none', feastDate: new Date()};
+let adminUser           = isAdminUser(window.location.href);
 let timeStampNow        = new Date();
 let jan = 0, feb=1, mar=2, apr=3, maj=4, jun=5, jul=6, aug=7, sep=8, okt=9, nov=10, dec=11; 
 
@@ -89,8 +90,13 @@ function byggStatsistikSite(lista, holidayDinner) {
             feastDinnerDivCenter.appendChild(feastDinnerBtn);      
         })
     
-  
-      feastDinnerBody.appendChild(feastDinnerDivCenter);
+        if (adminUser) {
+            let feastDinnerAdminBtn;
+            feastDinnerAdminBtn = createTheButton('Stek/grilltemperatur', '1cnIuRy2imz8OV5HM4eHNwg7PD6drKFhnz8i8oaOz1Hs', '1030403989&range=stektemperatur', false);
+            feastDinnerDivCenter.appendChild(feastDinnerAdminBtn);
+        }
+
+        feastDinnerBody.appendChild(feastDinnerDivCenter);
       
     }
 
