@@ -1,4 +1,4 @@
-'use strict'
+3'use strict'
 /* 
 
 https://jorgu.github.io/feastdinners/;
@@ -7,7 +7,7 @@ https://jorgu.github.io/feastdinners/;
 let feastHolidayList    = [];
 let upcomingFeastDinner = {name: 'none', feastDate: new Date()};
 let adminUser           = isAdminUser(window.location.href);
-let timeStampNow        = new Date();
+let timeStampNow        = new Date();3
 let jan = 0, feb=1, mar=2, apr=3, maj=4, jun=5, jul=6, aug=7, sep=8, okt=9, nov=10, dec=11; 
 
 let year			          = timeStampNow.getFullYear();
@@ -96,8 +96,8 @@ function byggStatsistikSite(lista, holidayDinner) {
             feastDinnerDivCenter.appendChild(feastDinnerAdminBtn);
         
             isSheetUrl = false;
-            let feastDinnerAdminBtn2 = createTheButton(isSheetUrl, 'Test non alcholic beer', 'https://www.nonallco.se', '', false);
-            feastDinnerDivCenter.appendChild(feastDinnerAdminBtn2);
+            feastDinnerAdminBtn = createTheButton(isSheetUrl, 'Test non alcholic beer', 'https://www.nonallco.se', '', false);
+            feastDinnerDivCenter.appendChild(feastDinnerAdminBtn);
         }
 
         feastDinnerBody.appendChild(feastDinnerDivCenter);
