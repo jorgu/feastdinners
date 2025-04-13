@@ -96,8 +96,8 @@ function byggStatsistikSite(lista, holidayDinner) {
             feastDinnerDivCenter.appendChild(feastDinnerAdminBtn);
         
             isSheetUrl = false;
-            feastDinnerAdminBtn = createTheButton(isSheetUrl, 'Test non alcholic beer', 'https://www.nonallco.se', '', false);
-            feastDinnerDivCenter.appendChild(feastDinnerAdminBtn);
+            let feastDinnerAdminBtn2 = createTheButton(isSheetUrl, 'Test non alcholic beer', 'https://www.nonallco.se', '', false);
+            feastDinnerDivCenter.appendChild(feastDinnerAdminBtn2);
         }
 
         feastDinnerBody.appendChild(feastDinnerDivCenter);
