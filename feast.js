@@ -1,4 +1,4 @@
-3'use strict'
+'use strict'
 /* 
 
 https://jorgu.github.io/feastdinners/;
