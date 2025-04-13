@@ -83,16 +83,21 @@ function byggStatsistikSite(lista, holidayDinner) {
       feastDinnerDivCenter.appendChild(feastDinnerHeader);
       
       
-
+        let isSheetUrl = true;
         lista.forEach(holidy => {
             let feastDinnerBtn;
-            feastDinnerBtn = createTheButton(holidy.desc, holidy.urlID, holidy.sheetID, holidy.id!=holidayDinner);
+            feastDinnerBtn = createTheButton(isSheetUrl, holidy.desc, holidy.urlID, holidy.sheetID, holidy.id!=holidayDinner);
             feastDinnerDivCenter.appendChild(feastDinnerBtn);      
         })
     
         if (adminUser) {
             let feastDinnerAdminBtn;
-            feastDinnerAdminBtn = createTheButton('Stek/grilltemperatur', '1cnIuRy2imz8OV5HM4eHNwg7PD6drKFhnz8i8oaOz1Hs', '1030403989&range=stektemperatur', false);
+            feastDinnerAdminBtn = createTheButton(isSheetUrl, 'Stek/grilltemperatur', '1cnIuRy2imz8OV5HM4eHNwg7PD6drKFhnz8i8oaOz1Hs', '1030403989&range=stektemperatur', false);
+            feastDinnerDivCenter.appendChild(feastDinnerAdminBtn);
+        
+            isSheetUrl = false;
+            let feastDinnerAdminBtn;
+            feastDinnerAdminBtn = createTheButton(isSheetUrl, 'Test non alcholic beer', 'https://www.nonallco.se', '', false);
             feastDinnerDivCenter.appendChild(feastDinnerAdminBtn);
         }
 
@@ -100,13 +105,18 @@ function byggStatsistikSite(lista, holidayDinner) {
       
     }
 
-function createTheButton(description, urlID, sheetID, disabled) {
+function createTheButton(isSheet, description, urlID, sheetID, disabled) {
     
     let defButtonClass         = 'feastDinnerButton feastDinnerButton2';
     let defButtonDisabledClass = 'feastDinnerButtonDisabled';
     let buttonclass;
-    let url = 'window.location.href="https://docs.google.com/spreadsheets/d/' + urlID + '/htmlembed/sheet?gid=' + sheetID + '"';
-    
+    let url;
+
+    if (isSheet) {
+        url = 'window.location.href="https://docs.google.com/spreadsheets/cd d/' + urlID + '/htmlembed/sheet?gid=' + sheetID + '"';
+    } else {
+        url = 'window.location.href="' + urlID + '"';
+    }
     disabled ? buttonclass = defButtonDisabledClass : buttonclass = defButtonClass;
 
     let feastDinnerBtn = createElement('button', 'class', buttonclass, description);
