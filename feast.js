@@ -112,7 +112,7 @@ function createTheButton(isSheet, description, urlID, sheetID, disabled) {
     let url;
 
     if (isSheet) {
-        url = 'window.location.href="https://docs.google.com/spreadsheets/cd d/' + urlID + '/htmlembed/sheet?gid=' + sheetID + '"';
+        url = 'window.location.href="https://docs.google.com/spreadsheets/d/' + urlID + '/htmlembed/sheet?gid=' + sheetID + '"';
     } else {
         url = 'window.location.href="' + urlID + '"';
     }
