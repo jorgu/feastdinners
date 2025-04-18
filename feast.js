@@ -33,7 +33,6 @@ if( NEWYEARDINNER.urlID.length > 0)       {feastHolidayList.push(NEWYEARDINNER)}
 upcomingFeastDinner = getUpcomingfeastdinner(feastHolidayList);
 
 byggStatsistikSite(feastHolidayList, upcomingFeastDinner);
-//siteTitle		= 'Statistik';    
 
 
 
