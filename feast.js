@@ -105,8 +105,8 @@ function byggStatsistikSite(lista, holidayDinner) {
 
 function createTheButton(isSheet, description, urlID, sheetID, disabled) {
     
-    let defButtonClass         = 'feastDinnerButton feastDinnerButton2';
-    let defButtonDisabledClass = 'feastDinnerButtonDisabled';
+    let defButtonClass         = 'button button2';//'feastDinnerButton feastDinnerButton2';
+    let defButtonDisabledClass = 'buttonDisabled';//feastDinnerButtonDisabled';
     let buttonclass;
     let url;
 
