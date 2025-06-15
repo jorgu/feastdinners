@@ -16,7 +16,7 @@ let day                 = timeStampNow.getDay();
 
 const EPIPHANY          = {id: 'epiphany',          desc: 'Trettondag', date: new Date(timeStampNow.getFullYear(), jan, 10),   urlID: '',                                              sheetID: ''};
 const EASTEREVENING     = {id: 'easter',            desc: 'Påskafton',  date: new Date(timeStampNow.getFullYear(), apr, 24),   urlID: '1eZv-inNeGf_b0hfx1Gqkr2Vx6e8ERqUpj_4tnfhn2CY',  sheetID: '401376878'};
-const MIDSUMMEREVENING  = {id: 'midsummer',         desc: 'Midsommar',  date: new Date(timeStampNow.getFullYear(), jun, 24),   urlID: '',                                              sheetID: ''};
+const MIDSUMMEREVENING  = {id: 'midsummer',         desc: 'Midsommar',  date: new Date(timeStampNow.getFullYear(), jun, 24),   urlID: '1-iiT7UsndG4jHZSm3zfQwac5PE8efuOLRFWpP0Rd96E',  sheetID: '401376878'};
 const CRAYFISHPARTY     = {id: 'crayfish',          desc: 'Kräftskiva', date: new Date(timeStampNow.getFullYear(), aug, 18),   urlID: '1ANLJuA04XkSKfIGDlmCI9OnS_kJXcw_z8ju5F3oDcDE',  sheetID: '0'};
 const CHRISTMASDINNER   = {id: 'christmasdinner',   desc: 'Julbord',    date: new Date(timeStampNow.getFullYear(), dec, 6),    urlID: '1JFpuigz7dy6gnQgxBjYi7so75Yj_A5jfUY575uQQxdk',  sheetID: '401376878'};
 const CHRISTMASEVENING  = {id: 'christmaseve',      desc: 'Julafton',   date: new Date(timeStampNow.getFullYear(), dec, 24),   urlID: '1JFpuigz7dy6gnQgxBjYi7so75Yj_A5jfUY575uQQxdk',  sheetID: '740624674'};
