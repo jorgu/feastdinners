@@ -76,7 +76,7 @@ function byggStatsistikSite(lista, holidayDinner) {
       feastDinnerHeader.setAttribute('style', 'font-size: 18px; italic: true');
       feastDinnerHeader.textContent = 'Samkväm';
 
-      feastDinnerDivSub = createElement('div', 'class', 'headFeast', 'med god mat & dryck');
+      feastDinnerDivSub = createElement('div', 'class', 'headFeast', 'god mat, dryck & gôtt häng!');
       feastDinnerDivSub.setAttribute('style','font-size: 14px; margin: 14px 2px;');
       feastDinnerHeader.appendChild(feastDinnerDivSub);
       feastDinnerDivCenter.appendChild(feastDinnerHeader);
