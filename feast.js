@@ -22,7 +22,7 @@ const CHRISTMASDINNER   = {id: 'christmasdinner',   desc: 'Julbord',    date: ne
 const CHRISTMASEVENING  = {id: 'christmaseve',      desc: 'Julafton',   date: new Date(timeStampNow.getFullYear(), dec, 26),   urlID: '1JFpuigz7dy6gnQgxBjYi7so75Yj_A5jfUY575uQQxdk',  sheetID: '740624674'};
 const NEWYEARDINNER     = {id: 'newyear',           desc: 'Nyårsafton', date: new Date(timeStampNow.getFullYear(), dec, 31),   urlID: '',                                              sheetID: ''};
 
-if( EPIPHANY.urlID.length > 0)            {feastHolidayList.push(EPIPHANY)};
+//if( EPIPHANY.urlID.length > 0)            {feastHolidayList.push(EPIPHANY)};
 if( EASTEREVENING.urlID.length > 0)       {feastHolidayList.push(EASTEREVENING)};
 if( MIDSUMMEREVENING.urlID.length > 0)    {feastHolidayList.push(MIDSUMMEREVENING)};
 if( CRAYFISHPARTY.urlID.length > 0)       {feastHolidayList.push(CRAYFISHPARTY)};
