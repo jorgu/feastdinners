@@ -122,8 +122,8 @@ const önskelista = [
     länk: ''
   },
   {
-    typ: 'Födelsedag',
-    mottagare: 'Kristoffer',
+    typ: 'Julklapp',
+    mottagare: 'Jörgen',
     paket: 'OXC Sadelväska Aqua Evo Adventure 10L, svart',
     länktext: 'Racerdepån, nätet',
     länk: ''
