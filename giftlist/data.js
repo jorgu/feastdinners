@@ -120,5 +120,12 @@ const önskelista = [
     paket: 'Arsenaltröja Gyökeres hårgele',
     länktext: '',
     länk: ''
+  },
+  {
+    typ: 'Födelsedag',
+    mottagare: 'Kristoffer',
+    paket: 'OXC Sadelväska Aqua Evo Adventure 10L, svart',
+    länktext: 'Racerdepån, nätet',
+    länk: ''
   }
 ];
